@@ -8,7 +8,7 @@
 let countdown = 4
 let neopixelStrip: neopixel.Strip = null
 
-//setup
+// setup
 basic.showIcon(IconNames.Happy)
 neopixelStrip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
 neopixelStrip.setPixelColor(0, neopixel.colors(NeoPixelColors.Black))
@@ -17,16 +17,17 @@ neopixelStrip.setPixelColor(2, neopixel.colors(NeoPixelColors.Black))
 neopixelStrip.setPixelColor(3, neopixel.colors(NeoPixelColors.Black))
 neopixelStrip.show()
 
-//countdown from 4
+// countdown from 4
 input.onButtonPressed(Button.A, function () {
-    //setup
+    // setup
     basic.clearScreen()
     countdown = 4
     neopixelStrip.setPixelColor(0, neopixel.colors(NeoPixelColors.Red))
     neopixelStrip.setPixelColor(1, neopixel.colors(NeoPixelColors.Red))
     neopixelStrip.setPixelColor(2, neopixel.colors(NeoPixelColors.Red))
     neopixelStrip.setPixelColor(3, neopixel.colors(NeoPixelColors.Red))
-    //countdown loop
+    
+    // countdown loop
     while (countdown >= 0) {
         basic.showNumber(countdown)
         neopixelStrip.show()
