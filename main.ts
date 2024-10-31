@@ -5,31 +5,34 @@
  * This program ...
 */
 
-let numberCountDown = 4
+let countdown = 4
 let neopixelStrip: neopixel.Strip = null
 
-// setup 
+//setup
+basic.showIcon(IconNames.Happy)
 neopixelStrip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
 neopixelStrip.setPixelColor(0, neopixel.colors(NeoPixelColors.Black))
 neopixelStrip.setPixelColor(1, neopixel.colors(NeoPixelColors.Black))
 neopixelStrip.setPixelColor(2, neopixel.colors(NeoPixelColors.Black))
 neopixelStrip.setPixelColor(3, neopixel.colors(NeoPixelColors.Black))
 neopixelStrip.show()
-basic.showIcon(IconNames.Happy)
 
-input.onButtonPressed(Button.A, function(){
-    while(numberCountDown > 0){
-        basic.showNumber(numberCountDown)
-        numberCountDown = numberCountDown - 1
+//countdown from 4
+input.onButtonPressed(Button.A, function () {
+    //setup
+    basic.clearScreen()
+    countdown = 4
+    neopixelStrip.setPixelColor(0, neopixel.colors(NeoPixelColors.Red))
+    neopixelStrip.setPixelColor(1, neopixel.colors(NeoPixelColors.Red))
+    neopixelStrip.setPixelColor(2, neopixel.colors(NeoPixelColors.Red))
+    neopixelStrip.setPixelColor(3, neopixel.colors(NeoPixelColors.Red))
+    //countdown loop
+    while (countdown >= 0) {
+        basic.showNumber(countdown)
+        neopixelStrip.show()
         basic.pause(500)
-        if (numberCountDown == 4) {
-            basic.showNumber(numberCountDown)
-            neopixelStrip.setPixelColor(0, neopixel.colors(NeoPixelColors.Red))
-            neopixelStrip.setPixelColor(1, neopixel.colors(NeoPixelColors.Red))
-            neopixelStrip.setPixelColor(2, neopixel.colors(NeoPixelColors.Red))
-            neopixelStrip.setPixelColor(3, neopixel.colors(NeoPixelColors.Red))
-            neopixelStrip.show()
-            basic.pause(500)
-        }
+        countdown = countdown - 1
+        neopixelStrip.setPixelColor(countdown, neopixel.colors(NeoPixelColors.Black))
     }
+    basic.showIcon(IconNames.Happy)
 })
